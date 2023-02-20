@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhf.mybatis.mapper.CountryMapper">
+
+    <resultMap id="CountryMap" type="com.fhf.mybatis.entity.Country">
+        <id property="code" column="countryCode"/>
+        <result property="name" column="name"/>
+        <result property="region" column="region"/>
+        <result property="surfaceArea" column="surfaceArea"/>
+
+        <collection property="cities" ofType="com.fhf.mybatis.entity.City">
+            <id property="id" column="id"></id>
+            <result property="name" column="name"></result>
+            <result property="countryCode" column="code"></result>
+            <result property="district" column="district"></result>
+            <result property="population" column="population"></result>
+        </collection>
+    </resultMap>
+
+    <select id="getCountryWithCity" resultMap="CountryMap">
+        select country.code, country.name, country.region, country.surfaceArea, city.* from country
+        join city on country.code = city.countryCode where country.name like "%"#{name}"%"
+
+    </select>
+</mapper>

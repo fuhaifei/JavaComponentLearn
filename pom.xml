@@ -69,12 +69,12 @@
         </dependency>
         <!-- servlet api包，socpe设置为provided表示在打包时不引入当前包 -->
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-<!--        <dependency>-->
-<!--            <groupId>javax.servlet</groupId>-->
-<!--            <artifactId>javax.servlet-api</artifactId>-->
-<!--            <version>4.0.1</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>javax.servlet</groupId>-->
+        <!--            <artifactId>javax.servlet-api</artifactId>-->
+        <!--            <version>4.0.1</version>-->
+        <!--            <scope>provided</scope>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>jakarta.servlet</groupId>
@@ -88,8 +88,24 @@
             <artifactId>jersey-bundle</artifactId>
             <version>1.19</version>
         </dependency>
-    </dependencies>
+        <!--mybatis依赖引入，同时需要mysql connector依赖-->
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.11</version>
+        </dependency>
+        <!--lombook依赖引入-->
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
+        </dependency>
 
+
+    </dependencies>
 
 
 </project>

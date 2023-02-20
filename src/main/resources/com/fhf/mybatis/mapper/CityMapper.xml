@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhf.mybatis.mapper.CityMapper">
+    <!--int insertUser();-->
+    <insert id="insertCity" parameterType="com.fhf.mybatis.entity.City">
+        insert into city values(null, #{name}, #{countryCode}, #{district}, #{population})
+    </insert>
+
+    <insert id="insertWithPrimaryKey" parameterType="com.fhf.mybatis.entity.City" useGeneratedKeys="true" keyProperty="id">
+        insert into city values (null, #{name}, #{countryCode}, #{district}, #{population})
+    </insert>
+
+    <select id="getCityByID" resultType="com.fhf.mybatis.entity.City">
+        select *
+        from city
+        where id = #{id};
+    </select>
+
+
+    <select id="getCityByDistrict" resultType="com.fhf.mybatis.entity.City">
+        select *
+        from city
+        where countryCode = #{countryCode} and district = #{district};
+    </select>
+
+    <select id="getCites" resultType="com.fhf.mybatis.entity.City">
+        select * from city where id in (#{ids})
+    </select>
+
+    <select id="queryByObject" resultType="com.fhf.mybatis.entity.City" parameterType="com.fhf.mybatis.entity.City">
+        select * from city
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="countryCode != null and countryCode != ''">
+                and countryCode = #{countryCode}
+            </if>
+            <if test="district != null and district != ''">
+                and district = #{district}
+            </if>
+            <if test="population != null">
+                and population = #{population}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateCityById" parameterType="com.fhf.mybatis.entity.City">
+        update city set name = #{name}, countryCode = #{countryCode}, district = #{district}, population = #{population}
+        where id = #{id};
+    </update>
+
+
+
+</mapper>
