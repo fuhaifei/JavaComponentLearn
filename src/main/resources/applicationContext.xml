@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="helloSpring" class="com.fhf.spring.IOC.HelloSpring"/>
+
+    <bean id="fatherBean" class="com.fhf.spring.IOC.FatherBean">
+        <property name="name" value="张三"/>
+    </bean>
+
+    <bean id="childBean" class="com.fhf.spring.IOC.ChildBean">
+        <constructor-arg name="name" value="张四"/>
+        <constructor-arg name="age" value="10"/>
+    </bean>
+
+    <!--复杂java bean的配置方式-->
+    <bean id="wheel" class="com.fhf.spring.IOC.Wheel"/>
+    <bean id="mounting" class="com.fhf.spring.IOC.Wheel"/>
+    <bean id="bicycle" class="com.fhf.spring.IOC.Bicycle">
+        <property name="brand" value="捷安特"/>
+        <property name="wheels">
+            <array>
+                <ref bean="wheel"/>
+                <ref bean="wheel"/>
+            </array>
+        </property>
+        <property name="mountings">
+            <list>
+                <bean class="com.fhf.spring.IOC.Mounting">
+                    <property name="description" value="秒表"/>
+                    <property name="type" value="electronic device"/>
+                </bean>
+                <bean class="com.fhf.spring.IOC.Mounting">
+                    <property name="description" value="挂包"/>
+                    <property name="type" value="others"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <!--导入配置文件中的配置信息-->
+    <context:property-placeholder location="classpath:druid.properties"/>
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="${jdbc.url}"/>
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--用来注册四个注解解析器:@Autowired @Required @PersistenceContext @Resource-->
+<!--    <context:annotation-config/>-->
+
+    <!--开启注解扫描-->
+    <context:component-scan base-package="com.fhf"/>
+</beans>
