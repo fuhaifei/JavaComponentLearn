@@ -1,5 +1,8 @@
 package com.fhf.spring.AOP.proxy;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Casio implements Calculator{
     @Override
     public int add(int a, int b) {

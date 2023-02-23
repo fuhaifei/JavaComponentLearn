@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <bean id="helloSpring" class="com.fhf.spring.IOC.HelloSpring"/>
 
@@ -48,9 +49,26 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
+    <!-- 配置 JdbcTemplate -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <!-- 装配数据源 -->
+        <property name="dataSource" ref="druidDataSource"/>
+    </bean>
+
+
     <!--用来注册四个注解解析器:@Autowired @Required @PersistenceContext @Resource-->
 <!--    <context:annotation-config/>-->
 
     <!--开启注解扫描-->
-    <context:component-scan base-package="com.fhf"/>
+    <context:component-scan base-package="com.fhf.spring"/>
+    <!--开启AOP注解扫描-->
+    <aop:aspectj-autoproxy proxy-target-class="false"/>
+
+    <!--开启事务注解扫描-->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <!--配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="druidDataSource"/>
+    </bean>
+
 </beans>
