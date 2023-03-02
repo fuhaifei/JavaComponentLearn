@@ -62,7 +62,7 @@
     <!--开启注解扫描-->
     <context:component-scan base-package="com.fhf.spring"/>
     <!--开启AOP注解扫描-->
-    <aop:aspectj-autoproxy proxy-target-class="false"/>
+    <aop:aspectj-autoproxy/>
 
     <!--开启事务注解扫描-->
     <tx:annotation-driven transaction-manager="transactionManager" />

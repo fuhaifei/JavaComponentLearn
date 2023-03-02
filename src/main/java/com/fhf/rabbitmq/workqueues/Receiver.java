@@ -2,8 +2,6 @@ package com.fhf.rabbitmq.workqueues;
 
 
 import com.rabbitmq.client.*;
-import org.apache.commons.io.input.TaggedReader;
-import org.checkerframework.checker.units.qual.C;
 
 import java.io.IOException;
 import java.util.TreeSet;
