@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Spring Test与SpringBoot Test区别与联系简单整理
  * 1. Spring Test：两个注解开启设置测试类 @RunWith(SpringJUnit4ClassRunner.class)->使用spring测试环境替代JUnit4的测试环境
  *                                   @ContextConfiguration("classpath:applicationContext.xml") ->指定spring上下文配置文件
- * 2.
+ * 2. SpringBoot楷体测试类：@SpringBootTest基于Junit5，或者以Spring方式配置
  * */
 
 @RunWith(SpringJUnit4ClassRunner.class)
