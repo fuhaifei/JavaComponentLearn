@@ -37,6 +37,4 @@ public class StaticProxy implements Calculator {
         Calculator c = staticProxy;
         c.multi(1, 2);
     }
-
-
 }

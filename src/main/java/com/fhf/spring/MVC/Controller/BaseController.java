@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -60,6 +61,11 @@ import java.util.UUID;
  * */
 @Controller
 public class BaseController {
+
+    @PostConstruct
+    public void init() {
+        // some init function
+    }
 
     @RequestMapping("/test")
     public String index() {
