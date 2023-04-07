@@ -3,6 +3,12 @@ package com.fhf.spring;
 /**
  * Spring常见八股问题
  * 1. Spring循环依赖问题
+ *    * 循环依赖的场景：getter/setter依赖（Spring可以解决）、构造方法循环依赖（Spring无法解决）
+ *    * 创建bean的过程：创建bean,初始化输入（依赖注入）,beanPostProcessor(),
+ *    * 基于三级缓存解决循环依赖问题
+ *      * 第一级缓存：存放完全初始化的对象
+ *      * 第二级缓存：存储部分初始化的对象（避免访问到部分初始化的对象）
+ *      * 第三级缓存：存放由ObjectFactory包装的AOP代理对象，在注入时生成带来对象，存到二级缓存
  * 2. Spring 提供的事务机制
  *    * Spring提供了高层的事务抽象，定义了包括事务管理器（PlatformTransactionManager），事务定义（TransactionDefinition）和
  *      事务状态（TransactionStatus）三个接口实现对于数据库事务的抽象
