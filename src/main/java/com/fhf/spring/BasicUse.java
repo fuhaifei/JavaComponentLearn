@@ -3,7 +3,7 @@ package com.fhf.spring;
 /**
  * Spring常见八股问题
  * 1. Spring Bean的生命周期
- *      * 整体上理解
+ *      * 整体上理解+
  *          * 实例化 ：             createBeanInstance()
  *          * 属性赋值（依赖注入）：   populateBean()
  *          * 初始化：              initializeBean()
@@ -41,6 +41,9 @@ package com.fhf.spring;
  * 4. Spring BeanFactory 和 ApplicationContext的区别
  *      * ApplicationContext继承自BeanFactory,对BeanFactory进行了扩展（国际化，统一资源加载策略，容器内部事件发布）
  *      * ApplicationContext对于bean在初始化时完成全部加载，BeanFactory在调用getBean()时加载
+ *      * FactoryBean:一种特殊类型的bean,在需要时生产一个对象，相关方法有
+ *          * getObject('name')返回工厂中的实例
+ *          * getObject('&name')返回工厂本身的实例
  * */
 public class BasicUse {
 }
